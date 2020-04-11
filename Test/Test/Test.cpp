@@ -149,7 +149,11 @@ using namespace std;
 //		_year = 1;
 //		_month = 1;
 //	}
-//
+//private:
+//	int _year;
+//	int _month;
+//};
+
 
 
 ////全缺省   无参和全缺省都是默认构造函数（自己实现的无参，自己实现的全缺省，编译器的构造函数），只能有一个
@@ -158,7 +162,7 @@ using namespace std;
 //	_year = year;
 //	_month = month;
 //}
-
+//
 //	void Print()
 //	{
 //		cout << _year << "-" << _month << endl;
@@ -187,27 +191,76 @@ using namespace std;
 //针对内置类型（int,char...)不处理
 //针对自定义类型的成员变量，调用它的构造函数初始化
 
+//class Date
+//{
+//public:
+//	void Print()
+//	{
+//		cout << _year << "-" << _month << endl;
+//	}
+//
+//private:
+//	int _year;
+//	int _month;
+//};
+//int main()
+//{
+//	Date d;
+//	d.Print();
+//
+//	return 0;
+//
+//}
+
+
+//析构函数，对象生命周期到了以后，自动调用，完成清理，不是d1,d2销毁
+//完成资源清理，
+// ~ + 类名  
+
+//class Stack{
+//public:
+//	Stack(int n = 10)//对象创建时自动调用完成初始化
+//	{
+//		_a = (int*)malloc(sizeof(int)*n);
+//		_size = 0;
+//		_capacity = 10;
+//	}
+//	~Stack()  //对象声明周期结束后自动清理
+//	{
+//		free(_a);
+//		_size = _capacity = 0;
+//	}
+//
+//private:
+//	int* _a;
+//	int _size;
+//	int _capacity;
+//};
+
+
+//拷贝构造
 class Date
 {
 public:
-	void Print()
+	
+	Date(int year, int month)
 	{
-		cout << _year << "-" << _month << endl;
+		_year = year;
+		_month = month;
 	}
-
+	Date(const Date& d)
+	{
+		_year = d._year;
+		_month = d._month;
+	}
 private:
 	int _year;
 	int _month;
 };
 int main()
 {
-	Date d;
-	d.Print();
+	Date d1(2020, 4);
+	Date d2(d1);  //拷贝构造
 
 	return 0;
-
 }
-
-
-//析构函数，对象生命周期到了以后，自动调用，完成清理，不是d1,d2销毁
-//完成资源清理，
