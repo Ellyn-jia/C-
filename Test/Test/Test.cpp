@@ -238,11 +238,49 @@ using namespace std;
 //};
 
 
-//拷贝构造
+////拷贝构造
+//class Date
+//{
+//public:
+//	
+//	Date(int year, int month)
+//	{
+//		_year = year;
+//		_month = month;
+//	}
+//	Date(const Date& d)
+//	{
+//		_year = d._year;
+//		_month = d._month;
+//	}
+////private:
+//	int _year;
+//	int _month;
+//};
+//// 运算符有几个操作数，operator重载的函数就有几个参数
+//
+//bool operator == (const Date& d1, const Date& d2)
+//{
+//	return d1._year == d2._year
+//		&& d1._month == d2._month;
+//}
+//
+//int main()
+//{
+//	Date d1(2020, 4);
+//	Date d2(d1);  //拷贝构造
+//	d1 == d2;
+//
+//	return 0;
+//}
+//
+
+
+
 class Date
 {
 public:
-	
+
 	Date(int year, int month)
 	{
 		_year = year;
@@ -253,6 +291,19 @@ public:
 		_year = d._year;
 		_month = d._month;
 	}
+	bool operator == (const Date& d)  //  bool operator == (Date* this, const Date& d)
+	{
+		return _year == d._year
+			&& _month == d._month;
+	}
+	bool operator>(const Date& d)
+	{
+		if (_year > d._year)
+			return true;
+		else if (_year == d._year && _month > d._month)
+			return true;
+		return false;
+	}
 private:
 	int _year;
 	int _month;
@@ -260,7 +311,9 @@ private:
 int main()
 {
 	Date d1(2020, 4);
-	Date d2(d1);  //拷贝构造
+	Date d2(2020, 5);
 
+	d1 == d2;
+	di > d2;  //d1.operator>(d2)
 	return 0;
 }
